@@ -16,23 +16,19 @@ filename = file.replace('.pdf', '')
 reader = PdfReader(file)
 sourcepage = reader.pages[0]
 
-print(f"a5 sourcepage width: {sourcepage.mediabox.width}")
-print(f"a5 sourcepage height: { sourcepage.mediabox.height}")
-print(f"PaperSize w: {PaperSize.A5.width}")
-print(f"PaperSize h: {PaperSize.A5.height}")
 
 # Get orientation
 landscape = False
 if round(sourcepage.mediabox.width) == PaperSize.A5.width and round(sourcepage.mediabox.height) == PaperSize.A5.height:
-    print("source no landscape")
+    # print("source no landscape")
     landscape = False
 elif round(sourcepage.mediabox.width) == PaperSize.A5.height and round(sourcepage.mediabox.height) == PaperSize.A5.width:
-    print("source is landscape")
+    # print("source is landscape")
     landscape = True
 else:
     print("No a5 Paper given ... quitting")
     quit()
-    print("hehee")
+
 
 # Create a destination file, and add a blank page to it
 writer = PdfWriter()
@@ -50,21 +46,12 @@ else:
     for row in range(2):
         destpage.merge_transformed_page(sourcepage, 
                                         Transformation().translate(
-                                            0 * sourcepage.mediabox.height,
                                             row * sourcepage.mediabox.width,
+                                            0 * sourcepage.mediabox.height,
+                                            # 0 * sourcepage.mediabox.height,
+                                            # row * sourcepage.mediabox.width,
                                             ),
                                         )
-
-
-
-# Copy source page to destination page, two times
-# for row in range(2):
-#     destpage.merge_transformed_page(sourcepage, 
-#                                     Transformation().translate(
-#                                         0 * sourcepage.mediabox.width,
-#                                         row * sourcepage.mediabox.height,
-#                                         ),
-#                                     )
 
 
 # Write file
