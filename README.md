@@ -19,3 +19,11 @@ if it exists in bin, e.g.
 ```console
 sudo cp a5druck.py /usr/bin/a5druck
 ```
+
+## Dependencies 
+
+Maybe you will need pypdf
+
+```console
+pip3 install pypdf
+```
